@@ -2,31 +2,38 @@
 
 ## Project Links
 
-- [https://github.com/adgreenie/react.git](https://github.com/adgreenie/react.git)
-- [https://answer10.web.app/](https://answer10.web.app/)
+- [https://github.com/brian99na/project-2](https://github.com/brian99na/project-2)
+- [https://brian99na.github.io/project-2/](https://brian99na.github.io/project-2/)
 
 ## Project Description
 
-For this project, I plan to make a multiple-choice trivia game. I will use React's Link and Source to provide access to instructions, the game itself, and a leaderboard. The questions and possible answers will be populated using an API call. The leaderboard will be stored on a Google Sheet and also viewed through an API call.
+This project is focused around the use of a cryptocurrency API that allows people to calculate how much their investment would be worth from a certain date until now.
+It will also feature another slide that compares their investment if they had chose to keep it as fiat currency.
 
 ## API
 
-https://opentdb.com/api.php?amount=10
+CoinGecko API. This API has options for current market data as well as the data shown below that allows for historical data to be retrieved.
 
 
 ```
+GET: https://api.coingecko.com/api/v3/coins/bitcoin/history?date=30-03-2016&localization=false
+
 {
-"category": "Entertainment: Music",
-"type": "multiple",
-"difficulty": "medium",
-"question": "Johnny Cash did a cover of this song written by lead singer of Nine Inch Nails, Trent Reznor.",
-"correct_answer": "Hurt",
-"incorrect_answers": [
-"Closer",
-"A Warm Place",
-"Big Man with a Gun"
-]
-},
+"id": "bitcoin",
+"symbol": "btc",
+"name": "Bitcoin",
+"image": {
+	"thumb": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+	"small": "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579"
+	},
+"market_data": {},
+"community_data": {},
+"developer_data": {},
+"public_interest_stats": {
+	"alexa_rank": 12489,
+	"bing_matches": null
+	}
+}
 ```
 
 
@@ -40,21 +47,15 @@ Upload images of wireframe to cloudinary and add the link here with a descriptio
 
 ### MVP/PostMVP - 5min
 
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
-
-#### MVP EXAMPLE
-- Fully functional, interactive, trivia game
-	- Questions/possible answers populated by API call
-	- Tells player if selected answer is correct
-	- Keeps track of score
-- Navbar with options that link to their corresponding pages
+#### MVP
+- Creating functional form that calls the coingecko API using the data that is inputted.
+- Creating 
 - Options page that allows player to select trivia theme/difficulty
 - Instructions page
 
 #### PostMVP EXAMPLE
 
-- Leaderboard that is updated using Firebase
-- Create multiple leaderboards depending on selected difficulty
+- Adding components that display performance against S&P 500 and 
 
 ## Components
 ##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
