@@ -4,15 +4,15 @@ import SecondInvestment from './SecondInvestment';
 import Landing from './Landing';
 
 
-function Homepage() {
+function Homepage(props) {
 
     return (
         <div>
             <section>
-                <Landing/>
+                <Landing setPrice={props.setPrice} coin={props.coin} date={props.date}/>
             </section>
             <section>
-                <Prices/>
+                <Prices price={props.price}/>
             </section>
             <section>
                 <SecondInvestment/>
