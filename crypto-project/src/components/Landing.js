@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Landing(props) {
 
@@ -6,10 +6,6 @@ function Landing(props) {
       setPrice()
   };
 
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-  const [month, setMonth] = useState('')
-  const [year, setYear] = useState('')
 
   return (
     <div>
@@ -17,7 +13,7 @@ function Landing(props) {
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="$______"></input>
       </form>
-      <h2>into {props.coin} in 2017?</h2>
+      <h2>into {props.coin} in {month} of {year}?</h2>
     </div>
   );
 }
