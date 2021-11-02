@@ -22,7 +22,6 @@ function Main() {
         setYear(yearNum)
     }, [date])
 
-
     return (
         <div>
             <Route path="/" render={() => <Homepage price={price} setPrice={setPrice} date={date} setDate={setDate} coin={coin} setCoin={setCoin} month={month} year={year}/>}/>

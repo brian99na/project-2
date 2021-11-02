@@ -8,3 +8,11 @@
 .App {
   text-align: center;
 }
+
+.landing {
+  height: 100vh
+}
+
+.prices {
+  height: 50vh
+}
