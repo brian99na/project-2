@@ -26,7 +26,7 @@ function Landing(props) {
         ></input>
       </form>
       <h2>
-        into {props.coin} in {props.month} of {props.year}?
+        into Bitcoin in {props.month} of {props.year}?
       </h2>
     </div>
   );

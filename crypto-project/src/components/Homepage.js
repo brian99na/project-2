@@ -13,7 +13,7 @@ function Homepage(props) {
                 <Landing pageRef={pageRef} inputPrice={props.inputPrice} setInputPrice={props.setInputPrice} coin={props.coin} year={props.year} month={props.month}/>
             </section>
             <section>
-                <Prices pageRef={pageRef} price={props.price}/>
+                <Prices pageRef={pageRef} price={props.price} results={props.results}/>
             </section>
             <section>
                 <SecondInvestment/>

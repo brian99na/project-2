@@ -3,14 +3,17 @@ import { Route } from "react-router";
 import Homepage from "./Homepage";
 import SecondInvestmentDetails from "./SecondInvestmentDetails";
 import PricesDetails from "./PricesDetails";
+import inflation from 'us-inflation';
 
 function Main() {
+  const [month, setMonth] = useState("March");
+  const [year, setYear] = useState("2017");
   const [inputPrice, setInputPrice] = useState("1000");
   const [date, setDate] = useState("30-03-2017");
   const [coin, setCoin] = useState("bitcoin");
   const [currentCoinPrice, setCurrentCoinPrice] = useState("");
   const [pastCoinPrice, setPastCoinPrice] = useState("");
-  const [results, setResults] = useState({ priceNow: 0, percentChange: 0 });
+  const [results, setResults] = useState({ priceNow: "0", percentChange: "0" });
 
   const currentApiCall = () => {
     fetch(
@@ -28,24 +31,22 @@ function Main() {
       .then((data) => setPastCoinPrice(data.market_data.current_price.usd));
   };
 
-
-
   useEffect(() => {
     currentApiCall();
     oldApiCall();
     const resCalculations = () => {
-        const priceNow = ((inputPrice * currentCoinPrice) / pastCoinPrice).toFixed(2);
-        const percentChange = ((priceNow / inputPrice) * 100).toFixed(0);
-        console.log(percentChange);
-        console.log(priceNow);
-      };
+      const priceNowe = (
+        (inputPrice * currentCoinPrice) /
+        pastCoinPrice
+      ).toFixed(2);
+      const percentChange = ((priceNowe / inputPrice) * 100).toFixed(2);
+      const priceLocale = Number(priceNowe).toLocaleString()
+      const percentLocale = Number(percentChange).toLocaleString()
+      setResults({ priceNow: priceLocale, percentChange: percentLocale });
+    };
     resCalculations();
   }, [inputPrice]);
 
-  console.log(inputPrice);
-
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
   useEffect(() => {
     const months = [
       "January",
@@ -68,6 +69,9 @@ function Main() {
     setYear(yearNum);
   }, [date]);
 
+  const inflationData = inflation({ year: 2017, amount: 2999})
+  console.log(inflationData)
+
   return (
     <div>
       <Route
@@ -82,6 +86,7 @@ function Main() {
             setCoin={setCoin}
             month={month}
             year={year}
+            results={results}
           />
         )}
       />
