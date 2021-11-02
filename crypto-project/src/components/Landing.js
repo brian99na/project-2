@@ -5,7 +5,7 @@ function Landing(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.setPrice(value);
+    props.setInputPrice(value);
     setValue("");
     props.pageRef.current.scrollIntoView({ behavior: "smooth" });
   };
