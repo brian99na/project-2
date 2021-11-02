@@ -15,12 +15,14 @@ function Main() {
     const currentApiCall = () => {
         fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`)
         .then(res => res.json())
-        .then(data => setCurrentCoinPrice(data.coin.usd))
+        .then(data => console.log(data[coin].usd))
     }
+
+    const oldApiCall =
 
     useEffect(() => {
         currentApiCall()
-    }, [price])
+    }, [])
 
   
 
