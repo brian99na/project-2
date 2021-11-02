@@ -2,18 +2,25 @@ import React, { useEffect, useState } from "react";
 
 function Landing(props) {
 
-  const handleSubmit = () => {
-      setPrice()
+    const [value, setValue] = useState('')
+
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      props.setPrice(value)
+      setValue('')
   };
 
+  const handleChange = (e) => {
+    setValue(e.target.value)
+  }
 
   return (
     <div>
       <h1>What if you had invested</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="$______"></input>
+        <input value={value} type="text" placeholder="$______" onChange={handleChange}></input>
       </form>
-      <h2>into {props.coin} in {month} of {year}?</h2>
+      <h2>into {props.coin} in {props.month} of {props.year}?</h2>
     </div>
   );
 }
