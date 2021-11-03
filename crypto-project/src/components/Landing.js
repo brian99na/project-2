@@ -7,7 +7,7 @@ function Landing(props) {
     e.preventDefault();
     props.setInputPrice(value);
     setValue("");
-    props.pageRef.current.scrollIntoView({ behavior: "smooth" });
+    props.pageRef.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
   };
 
   const handleChange = (e) => {
@@ -16,17 +16,18 @@ function Landing(props) {
 
   return (
     <div className='landing'>
-      <h1>What if you had invested</h1>
+      <h1 className='regularFont'>What if you invested</h1>
       <form onSubmit={handleSubmit}>
+        <p>$</p>
         <input
+          className="landingInput"
           value={value}
           type="text"
-          placeholder="$______"
           onChange={handleChange}
         ></input>
       </form>
-      <h2>
-        into Bitcoin in {props.month} of {props.year}?
+      <h2 className='regularFont'>
+        into Bitcoin in {props.year}?
       </h2>
     </div>
   );

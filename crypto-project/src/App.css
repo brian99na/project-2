@@ -1,30 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-.App {
-  text-align: center;
+.regularFont{
+  font-weight: 300;
 }
+
+/* Header */
 
 a {
   color: black;
   text-decoration: none;
 }
 
-.icon {
+.icon1 {
   font-size: 25px;
   z-index: 1;
+  transform: scaleX(-1)
 }
 
-.landing {
-  height: 100vh
-}
-
-.prices {
-  height: 50vh
+.icon2 {
+  font-size: 25px;
+  z-index: 1;
 }
 
 .navUpper {
@@ -40,6 +42,8 @@ a {
 
 .hidden {
   display: none;
+  width: 0;
+  transition: 1s ease;
 }
 
 .navdrop {
@@ -56,3 +60,74 @@ a {
   right: 0px;
   background: rgb(202, 202, 202);
 }
+
+/* Main */
+
+/*        Landing          */
+
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5em 1em 1em 1em;
+  gap: .5em;
+  font-size: 20px;
+}
+
+.landing form p {
+  font-size: 30px;
+  font-weight: 300;
+}
+
+.landing form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.landingInput {
+  width: 75%;
+  border: none;
+  font-size: 36px;
+  border-bottom: 1px solid rgb(206, 205, 205);
+  outline: none;
+}
+
+/*        Prices          */
+
+.pricesMain {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pricesVid {
+  padding: 1em;
+  width: 50%
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  gap: .5em;
+}
+
+.pricesTitle {
+  font-size: 20px;
+}
+
+/*        2nd Investment          */
+
+
+.secondInvestment {
+  height: 100vh;
+}
+

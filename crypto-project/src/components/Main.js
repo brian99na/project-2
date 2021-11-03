@@ -12,7 +12,10 @@ function Main() {
   const [coin, setCoin] = useState("bitcoin");
   const [currentCoinPrice, setCurrentCoinPrice] = useState("");
   const [pastCoinPrice, setPastCoinPrice] = useState("");
-  const [results, setResults] = useState({ priceNow: "inputPrice", percentChange: "0" });
+  const [results, setResults] = useState({
+    priceNow: "inputPrice",
+    percentChange: "0",
+  });
 
   const currentApiCall = () => {
     fetch(
@@ -39,8 +42,8 @@ function Main() {
         pastCoinPrice
       ).toFixed(2);
       const percentChange = ((priceNowe / inputPrice) * 100).toFixed(0);
-      const priceLocale = Number(priceNowe).toLocaleString()
-      const percentLocale = Number(percentChange).toLocaleString()
+      const priceLocale = Number(priceNowe).toLocaleString();
+      const percentLocale = Number(percentChange).toLocaleString();
       setResults({ priceNow: priceLocale, percentChange: percentLocale });
     };
     resCalculations();
@@ -68,15 +71,29 @@ function Main() {
     setYear(yearNum);
   }, [date]);
 
-  // useEffect(() => {
-  //   fetch('https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?', {method: 'get', dataType: 'json'})
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  // }, [])
+  useEffect(() => {
+    fetch(
+      "https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?",
+      {
+        method: "POST",
+        body: {
+          country: "united-states",
+          start: date,
+          end: '30-10-2021',
+          amount: inputPrice,
+          format: true,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, [inputPrice]);
 
   return (
     <div>
-      <Route path="/" render={() => (
+      <Route
+        path="/"
+        render={() => (
           <Homepage
             inputPrice={inputPrice}
             setInputPrice={setInputPrice}
@@ -91,7 +108,10 @@ function Main() {
         )}
       />
       <Route path="/PricesDetails" render={() => <PricesDetails />} />
-      <Route path="/SecondInvestmentDetails" render={() => <SecondInvestmentDetails />} />
+      <Route
+        path="/SecondInvestmentDetails"
+        render={() => <SecondInvestmentDetails />}
+      />
     </div>
   );
 }

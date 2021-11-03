@@ -1,39 +1,41 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { HiOutlineSortDescending, HiOutlineSortAscending } from 'react-icons/hi'
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
 
 const Header = () => {
+  const [active, setActive] = useState("false");
 
-    const [active, setActive] = useState('false')
+  const handleClick = (e) => {
+    setActive(!active);
+  };
 
-    const handleClick = (e) => {
-        setActive(!active)
-    }
+  console.log(active);
 
-    console.log(active)
+  const checkVis = active ? "visible" : "hidden";
+  const checkHid = active ? "hidden" : "visible";
+  const checkHid2 = active ? "hidden" : "navdrop";
 
-    const checkVis = active ? 'visible' : 'hidden'
-    const checkHid = active ? 'hidden' : 'visible'
-    const checkHid2 = active ? 'hidden' : 'navdrop'
+  const classVis = `icon1 ${checkVis}`;
+  const checkHidIcon = `icon2 ${checkHid}`;
+  const checkHidNav = `${checkHid2}`;
 
-    const classVis = `icon ${checkVis}`
-    const checkHidIcon = `icon ${checkHid}`
-    const checkHidNav = `${checkHid2}`
-
-
-
-    return (
-        <nav className="navUpper">
-            <Link to='/'><h1>What if?</h1></Link>
-            <HiOutlineSortDescending onClick={handleClick} className={classVis} />
-            <HiOutlineSortAscending onClick={handleClick} className={checkHidIcon}/>
-            <div className={checkHidNav}>
-                <Link to='/About'><p>Crypto Calculator</p></Link>
-                <Link to='/Contact'><p>Inflation Calculator</p></Link>
-            </div>
-        </nav>
-    )
-}
+  return (
+    <nav className="navUpper">
+      <Link to="/">
+        <h1>What if?</h1>
+      </Link>
+      <HiTrendingDown onClick={handleClick} className={classVis}/>
+      <HiTrendingUp onClick={handleClick} className={checkHidIcon} />
+      <div className={checkHidNav}>
+        <Link to="/About">
+          <p>Crypto Calculator</p>
+        </Link>
+        <Link to="/Contact">
+          <p>Inflation Calculator</p>
+        </Link>
+      </div>
+    </nav>
+  );
+};
 
 export default Header;
