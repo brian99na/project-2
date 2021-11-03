@@ -11,6 +11,10 @@
   font-weight: 300;
 }
 
+.mediumFont {
+  font-weight: 400;
+}
+
 /* Header */
 
 a {
@@ -66,7 +70,7 @@ a {
 /*        Landing          */
 
 .landing {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -103,6 +107,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2em;
 }
 
 .pricesVid {
@@ -124,10 +129,21 @@ a {
   font-size: 20px;
 }
 
+.priceRes {
+  font-size: 40px;
+}
+
 /*        2nd Investment          */
 
 
 .secondInvestment {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.secInvTitle {
+  
+}

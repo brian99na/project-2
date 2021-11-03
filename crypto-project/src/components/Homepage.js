@@ -16,7 +16,7 @@ function Homepage(props) {
                 <Prices pageRef={pageRef} price={props.price} results={props.results}/>
             </section>
             <section>
-                <SecondInvestment/>
+                <SecondInvestment year={props.year}/>
             </section>
         </div>
     )

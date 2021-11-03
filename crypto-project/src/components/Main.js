@@ -33,6 +33,24 @@ function Main() {
       .then((data) => setPastCoinPrice(data.market_data.current_price.usd));
   };
 
+  // const inflationApiCall = () => {
+  //   fetch('http://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?', {
+  //     method: 'post',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: {
+  //       country: 'united-states',
+  //       start: '2012/1/1',
+  //       end: '2012/12/1',
+  //       amount: '107',
+  //       format: true,
+  //     }
+  //   })
+  //   .then(res => res.json())
+  //   .then(data => console.log(data))
+  // }
+
   useEffect(() => {
     currentApiCall();
     oldApiCall();
@@ -71,23 +89,9 @@ function Main() {
     setYear(yearNum);
   }, [date]);
 
-  useEffect(() => {
-    fetch(
-      "https://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?",
-      {
-        method: "POST",
-        body: {
-          country: "united-states",
-          start: date,
-          end: '30-10-2021',
-          amount: inputPrice,
-          format: true,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, [inputPrice]);
+  // useEffect(() => {
+  //   inflationApiCall()
+  // }, [inputPrice]);
 
   return (
     <div>
