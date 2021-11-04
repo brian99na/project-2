@@ -11,7 +11,7 @@ function Prices(props) {
                 <h1 className='mediumFont priceRes'>${props.results.priceNow}</h1>
                 <h2 className='regularFont pricesTitle'>That's a change of</h2>
                 <h1 className='mediumFont priceRes'>{props.results.percentChange}%</h1>
-                <Link to='/CryptoDetails'>
+                <Link to='/project-2/Crypto-Details'>
                     <button className='detailButton'>Try out a different cryptocurrency here</button>
                 </Link>
             </div>

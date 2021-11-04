@@ -24,6 +24,7 @@ function Landing(props) {
           value={value}
           type="text"
           onChange={handleChange}
+          placeholder='1000'
         ></input>
       </form>
       <h2 className='regularFont'>

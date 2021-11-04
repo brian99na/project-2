@@ -5,12 +5,14 @@ function PricesDetails(props) {
   const [priceValue, setPriceValue] = useState("");
   const [dateValue, setDateValue] = useState("");
   const [results, setResults] = useState(false);
+  const [dropDown, setDropDown] = useState(false)
 
   const handlePriceChange = (e) => {
     setPriceValue(e.target.value);
   };
 
   const handleCryptoChange = (e) => {
+      setDropDown(true)
     setCryptoValue(e.target.value);
   };
 
@@ -18,34 +20,40 @@ function PricesDetails(props) {
     setDateValue(e.target.value);
   };
 
-  const handleCryptoClick = (cryptoItemId) => {
+  const handleCryptoClick = (e, cryptoItemId, cryptoItemName) => {
     props.setCoin(cryptoItemId);
+    setCryptoValue(cryptoItemName)
+    setDropDown(false)
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
     props.setInputPrice(priceValue);
     props.setDate(dateValue);
     setDateValue('')
     setCryptoValue('')
     setPriceValue('')
     setResults(true);
-  };
+  }
 
   const cryptoStartCoin =
-    cryptoValue &&
+    props.cryptoList &&
     props.cryptoList.filter((cryptoItem) =>
       cryptoItem.name.match("^" + cryptoValue)
     );
 
   const cryptoIncludeCoin =
-    cryptoValue &&
+    props.cryptoList &&
     props.cryptoList.filter((cryptoItem) =>
       cryptoItem.name.match("(?<!^)" + cryptoValue)
     );
 
   const combList = cryptoStartCoin.concat(cryptoIncludeCoin);
-  
+
   const cryptoJSX =
-    combList &&
+    dropDown &&
     combList.map((cryptoItem) => (
-      <p onClick={() => handleCryptoClick(cryptoItem.id)}>{cryptoItem.name}</p>
+      <p onClick={(e) => handleCryptoClick(e, cryptoItem.id, cryptoItem.name)}>{cryptoItem.name}</p>
     ));
 
   const resultsJSX = results && (
@@ -60,9 +68,9 @@ function PricesDetails(props) {
   console.log(results)
 
   return (
-    <div>
-      <div>
-        <span className="regularFont">On </span>
+    <div className='priceDetailMain'>
+      <form className='priceDetailForm'onSubmit={handleSubmit}>
+        <span className="regularFont priceDetailTitle">On </span>
         <input
           type="text"
           placeholder="DD-MM-YYYY"
@@ -81,9 +89,11 @@ function PricesDetails(props) {
           type="text"
           onChange={handleCryptoChange}
           value={cryptoValue}
+          placeholder='Enter Coin'
         ></input>
         <div className="cryptoDropDown">{cryptoJSX}</div>
-      </div>
+        <button onClick={handleSubmit}>Calculate</button>
+      </form>
       {resultsJSX}
     </div>
   );

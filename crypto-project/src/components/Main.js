@@ -12,7 +12,7 @@ function Main(props) {
   const [coin, setCoin] = useState("bitcoin");
   const [currentCoinPrice, setCurrentCoinPrice] = useState("");
   const [pastCoinPrice, setPastCoinPrice] = useState("");
-  const [results, setResults] = useState({priceNow: "inputPrice", percentChange: "0",});
+  const [results, setResults] = useState({priceNow: inputPrice, percentChange: "0",});
   const [inflationData, setInflationData] = useState('')
   const [inflationPercentage, setInflationPercentage] = useState('')
   const [apiError, setApiError] = useState('')
@@ -50,13 +50,10 @@ function Main(props) {
   };
 
   const cryptoCalculator= () => {
-    const currentPrice = (
-      (inputPrice * currentCoinPrice) /
-      pastCoinPrice
-    ).toFixed(2);
-    const percentChange = ((currentPrice / inputPrice) * 100).toFixed(0);
-    const priceLocale = Number(currentPrice).toLocaleString();
-    const percentLocale = Number(percentChange).toLocaleString();
+    const currentPrice = currentCoinPrice && ((inputPrice * currentCoinPrice)/pastCoinPrice).toFixed(2);
+    const percentChange = currentCoinPrice && ((currentPrice / inputPrice) * 100).toFixed(0);
+    const priceLocale = currentCoinPrice && Number(currentPrice).toLocaleString();
+    const percentLocale = currentCoinPrice && Number(percentChange).toLocaleString();
     setResults({ priceNow: priceLocale, percentChange: percentLocale });
   };
 
@@ -72,6 +69,18 @@ function Main(props) {
     cryptoCalculator();
     inflationCalculator();
   }, [inputPrice]);
+
+  useEffect(() => {
+    currentApiCall();
+    oldApiCall();
+    cryptoCalculator();
+  }, [date]);
+
+  useEffect(() => {
+    currentApiCall();
+    oldApiCall();
+    cryptoCalculator();
+  }, [coin]);
 
   useEffect(() => {
     inflationApiCall()
@@ -102,6 +111,8 @@ function Main(props) {
 
   const navbarGray = props.navbarClickable ? null : 'navbarGray'
   const mainClass = `mainVisible ${navbarGray}`
+
+console.log(results)
 
   return (
     <div className={mainClass}>

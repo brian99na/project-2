@@ -9,7 +9,7 @@ function SecondInvestment(props) {
             <h1 className='regularFont pricesTitle'>Due to inflation, your cash has lost</h1>
             <h1 className='inflationPercentage'>{props.inflationPercentage}%</h1>
             <h1 className='regularFont'>of its value since {props.year}.</h1>
-            <Link to='/SecondInvestmentDetails'>
+            <Link to='/project-2/Inflation-Calculator'>
                 <button className='detailButton'>Try out some different values for inflation</button>
             </Link>
         </div>
