@@ -18,13 +18,15 @@ function Main(props) {
   });
   const [inflationData, setInflationData] = useState('')
   const [inflationPercentage, setInflationPercentage] = useState('')
+  const [apiError, setApiError] = useState('')
 
   const currentApiCall = () => {
     fetch(
       `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
     )
       .then((res) => res.json())
-      .then((data) => setCurrentCoinPrice(data[coin].usd));
+      .then((data) => setCurrentCoinPrice(data[coin].usd))
+      .catch((error) => setApiError('Error:', error));
   };
 
   const oldApiCall = () => {
@@ -32,13 +34,19 @@ function Main(props) {
       `https://api.coingecko.com/api/v3/coins/${coin}/history?date=${date}&localization=false`
     )
       .then((res) => res.json())
-      .then((data) => setPastCoinPrice(data.market_data.current_price.usd));
+      .then((data) => setPastCoinPrice(data.market_data.current_price.usd))
+      .catch((error) => setApiError('Error:', error))
   };
+
+  const cryptoApiCall = () => {
+    
+  }
 
   const inflationApiCall = () => {
     fetch("https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.json?api_key=dDi1qzdRACZxKWbNGJRx")
       .then((res) => res.json())
-      .then((data) => setInflationData(data.dataset.data));
+      .then((data) => setInflationData(data.dataset.data))
+      .catch((error) => setApiError('Error:', error));
   };
 
   const cryptoCalculator= () => {
@@ -122,7 +130,7 @@ function Main(props) {
       <Route
         path="/project-2/Inflation-Calculator"
         exact
-        render={() => <SecondInvestmentDetails setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage}/>}
+        render={() => <SecondInvestmentDetails setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage} apiError={apiError}/>}
       />
     </div>
   );

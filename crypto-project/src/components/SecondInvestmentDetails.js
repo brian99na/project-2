@@ -4,16 +4,27 @@ function SecondInvestmentDetails(props) {
   const [dateValue, setDateValue] = useState("");
   const [priceValue, setPriceValue] = useState("");
 
-  const inflationRate = props.inflationPercentage && props.inflationPercentage;
-  const inflationLost = props.inflationPercentage && (props.inflationPercentage * props.inputPrice) - props.inputPrice;
-    const inflationJSX = props.inflationPercentage && <p className='inflationResults'>You have lost ${inflationLost} which is a reduction of {inflationRate}</p>
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  console.log(props.inflationPercentage);
+
+  const inflationLost =
+    props.inflationPercentage &&
+    (props.inflationPercentage / 100) * props.inputPrice;
+
+  const inflationFixed = Number(inflationLost).toFixed(2);
+
+  const inflationJSX = props.inflationPercentage && (
+    <p className="inflationResults">
+      You have lost ${inflationFixed} which is a reduction of{" "}
+      {props.inflationPercentage}
+    </p>
+  );
+
+  const handleClick = () => {
     props.setInputPrice(priceValue);
     props.setDate(dateValue);
     setPriceValue("");
     setDateValue("");
-  };
+  }
 
   const handleDateChange = (e) => {
     setDateValue(e.target.value);
@@ -26,7 +37,6 @@ function SecondInvestmentDetails(props) {
   return (
     <div className="inflationMain">
       <h1 className="regularFont">Calculate Inflation</h1>
-      <form onSubmit={handleSubmit}>
         <p className="regularFont">Enter the Date</p>
         <input
           value={dateValue}
@@ -41,10 +51,9 @@ function SecondInvestmentDetails(props) {
           onChange={handlePriceChange}
           type="text"
         ></input>
-        <br/><button>Enter</button>
+        <br />
+        <button onClick={handleClick}>Enter</button>
         {inflationJSX}
-      </form>
-
     </div>
   );
 }
