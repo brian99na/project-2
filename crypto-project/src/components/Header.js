@@ -11,12 +11,10 @@ const Header = () => {
 
   console.log(active);
 
-  const checkVis = active ? "visible" : "hidden";
-  const checkHid = active ? "hidden" : "visible";
-  const checkHid2 = active ? "hidden" : "navdrop";
+  const checkVis = active ? null : "iconRotate";
+  const checkHid2 = active ? "hidden" : 'navdrop';
 
-  const classVis = `icon1 ${checkVis}`;
-  const checkHidIcon = `icon2 ${checkHid}`;
+  const classVis = `icon visible ${checkVis}`;
   const checkHidNav = `${checkHid2}`;
 
   return (
@@ -25,7 +23,6 @@ const Header = () => {
         <h1 className='headTitle'>What if?</h1>
       </Link>
       <HiTrendingDown onClick={handleClick} className={classVis}/>
-      <HiTrendingUp onClick={handleClick} className={checkHidIcon} />
       <div className={checkHidNav}>
         <Link to="/project-2/CryptoDetails">
           <p>Crypto Calculator</p>

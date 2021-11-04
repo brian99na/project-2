@@ -36,15 +36,15 @@ a {
   text-decoration: none;
 }
 
-.icon1 {
+.icon {
   font-size: 25px;
   z-index: 1;
-  transform: scaleX(-1)
+  transform: scaleX(-1);
+  transition: transform 1s ease;
 }
 
-.icon2 {
-  font-size: 25px;
-  z-index: 1;
+.iconRotate {
+  transform: rotate(90deg)
 }
 
 .navUpper {

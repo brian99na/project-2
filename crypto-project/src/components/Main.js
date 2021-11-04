@@ -16,6 +16,8 @@ function Main() {
     priceNow: "inputPrice",
     percentChange: "0",
   });
+  const [inflationData, setInflationData] = useState('')
+  const [inflationPercentage, setInflationPercentage] = useState('')
 
   const currentApiCall = () => {
     fetch(
@@ -33,38 +35,35 @@ function Main() {
       .then((data) => setPastCoinPrice(data.market_data.current_price.usd));
   };
 
-  // const inflationApiCall = () => {
-  //   fetch('http://www.statbureau.org/calculate-inflation-price-jsonp?jsoncallback=?', {
-  //     method: 'post',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: {
-  //       country: 'united-states',
-  //       start: '2012/1/1',
-  //       end: '2012/12/1',
-  //       amount: '107',
-  //       format: true,
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
+  const inflationApiCall = () => {
+    fetch("https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.json?api_key=dDi1qzdRACZxKWbNGJRx")
+      .then((res) => res.json())
+      .then((data) => setInflationData(data.dataset.data));
+  };
+
+  const resultCalculations = () => {
+    const currentPrice = (
+      (inputPrice * currentCoinPrice) /
+      pastCoinPrice
+    ).toFixed(2);
+    const percentChange = ((currentPrice / inputPrice) * 100).toFixed(0);
+    const priceLocale = Number(currentPrice).toLocaleString();
+    const percentLocale = Number(percentChange).toLocaleString();
+    setResults({ priceNow: priceLocale, percentChange: percentLocale });
+  };
+
+  const inflationCalculator = () => {
+    const indexValue = (12 * (2021 - Number(year))) + (9 - Number(date.slice(3, 5)))
+    const percentage = inflationData && (((274.31 - Number(inflationData[indexValue][1]))/Number(inflationData[indexValue][1])) * 100).toFixed(2)
+    setInflationPercentage(percentage)
+  }
 
   useEffect(() => {
     currentApiCall();
     oldApiCall();
-    const resCalculations = () => {
-      const priceNowe = (
-        (inputPrice * currentCoinPrice) /
-        pastCoinPrice
-      ).toFixed(2);
-      const percentChange = ((priceNowe / inputPrice) * 100).toFixed(0);
-      const priceLocale = Number(priceNowe).toLocaleString();
-      const percentLocale = Number(percentChange).toLocaleString();
-      setResults({ priceNow: priceLocale, percentChange: percentLocale });
-    };
-    resCalculations();
+    inflationApiCall();
+    resultCalculations();
+    inflationCalculator();
   }, [inputPrice]);
 
   useEffect(() => {
@@ -89,14 +88,11 @@ function Main() {
     setYear(yearNum);
   }, [date]);
 
-  // useEffect(() => {
-  //   inflationApiCall()
-  // }, [inputPrice]);
-
   return (
     <div>
       <Route
-        path="/project-2" exact
+        path="/project-2"
+        exact
         render={() => (
           <Homepage
             inputPrice={inputPrice}
@@ -108,12 +104,18 @@ function Main() {
             month={month}
             year={year}
             results={results}
+            inflationPercentage={inflationPercentage}
           />
         )}
       />
-      <Route path="/project-2/CryptoDetails" exact render={() => <PricesDetails />} />
       <Route
-        path="/project-2/SecondInvestmentDetails" exact
+        path="/project-2/CryptoDetails"
+        exact
+        render={() => <PricesDetails />}
+      />
+      <Route
+        path="/project-2/SecondInvestmentDetails"
+        exact
         render={() => <SecondInvestmentDetails />}
       />
     </div>
