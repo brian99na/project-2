@@ -109,12 +109,12 @@ function Main() {
         )}
       />
       <Route
-        path="/project-2/CryptoDetails"
+        path="/project-2/Crypto-Details"
         exact
         render={() => <PricesDetails />}
       />
       <Route
-        path="/project-2/SecondInvestmentDetails"
+        path="/project-2/Inflation-Calculator"
         exact
         render={() => <SecondInvestmentDetails />}
       />

@@ -12,10 +12,10 @@ const Header = () => {
   console.log(active);
 
   const checkVis = active ? null : "iconRotate";
-  const checkHid2 = active ? "hidden" : 'navdrop';
+  const checkHid2 = active ? null : 'navdrop';
 
   const classVis = `icon visible ${checkVis}`;
-  const checkHidNav = `${checkHid2}`;
+  const checkHidNav = `hidden ${checkHid2}`;
 
   return (
     <nav className="navUpper">
@@ -24,11 +24,11 @@ const Header = () => {
       </Link>
       <HiTrendingDown onClick={handleClick} className={classVis}/>
       <div className={checkHidNav}>
-        <Link to="/project-2/CryptoDetails">
-          <p>Crypto Calculator</p>
+        <Link to="/project-2/Crypto-Details">
+          <p className='regularFont' onClick={handleClick}>Crypto Calculator</p>
         </Link>
-        <Link to="/project-2/SecondInvestmentDetails">
-          <p>Inflation Calculator</p>
+        <Link to="/project-2/Inflation-Calculator">
+          <p className='regularFont' onClick={handleClick}>Inflation Calculator</p>
         </Link>
       </div>
     </nav>

@@ -9,7 +9,7 @@ function Prices(props) {
             <div className='prices'>
                 <h1 className='regularFont pricesTitle' >Your investment is now worth:</h1>
                 <h1 className='mediumFont priceRes'>${props.results.priceNow}</h1>
-                <h2 className='regularFont'>That's a change of</h2>
+                <h2 className='regularFont pricesTitle'>That's a change of</h2>
                 <h1 className='mediumFont priceRes'>{props.results.percentChange}%</h1>
                 <Link to='/CryptoDetails'>
                     <button className='detailButton'>Try out a different cryptocurrency here</button>

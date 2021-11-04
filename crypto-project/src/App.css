@@ -39,12 +39,13 @@ a {
 .icon {
   font-size: 25px;
   z-index: 1;
+  cursor: pointer;
   transform: scaleX(-1);
-  transition: transform 1s ease;
+  transition: transform .8s cubic-bezier(.34,.01,.08,1);
 }
 
 .iconRotate {
-  transform: rotate(90deg)
+  transform: rotateZ(-80deg)
 }
 
 .navUpper {
@@ -54,18 +55,7 @@ a {
   padding: 1em;
 }
 
-.visible {
-  cursor: pointer;
-}
-
 .hidden {
-  display: none;
-  width: 0vw;
-  right: -400px;
-  transition: 1s ease;
-}
-
-.navdrop {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,8 +66,13 @@ a {
   height: 100vh;
   width: 80vw;
   bottom: 0;
-  right: 0;
   background: rgb(220, 234, 255);
+  transition: .5s cubic-bezier(.49,.01,.35,1);
+  right: -400px;
+}
+
+.navdrop {
+  right: 0
 }
 
 /* Main */
@@ -158,11 +153,16 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1.5em;
+  gap: 1.2em;
 }
 
 .secInvTitle {
   text-align: center;
+  font-size: 30px;
+}
+
+.inflationPercentage {
+  font-weight: 400;
   font-size: 38px;
 }
 
