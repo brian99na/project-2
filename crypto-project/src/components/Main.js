@@ -96,7 +96,7 @@ function Main() {
   return (
     <div>
       <Route
-        path="/" exact
+        path="/project-2" exact
         render={() => (
           <Homepage
             inputPrice={inputPrice}
@@ -111,9 +111,9 @@ function Main() {
           />
         )}
       />
-      <Route path="/CryptoDetails" exact render={() => <PricesDetails />} />
+      <Route path="/project-2/CryptoDetails" exact render={() => <PricesDetails />} />
       <Route
-        path="/SecondInvestmentDetails" exact
+        path="/project-2/SecondInvestmentDetails" exact
         render={() => <SecondInvestmentDetails />}
       />
     </div>

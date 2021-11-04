@@ -21,16 +21,16 @@ const Header = () => {
 
   return (
     <nav className="navUpper">
-      <Link to="/">
+      <Link to="/project-2">
         <h1 className='headTitle'>What if?</h1>
       </Link>
       <HiTrendingDown onClick={handleClick} className={classVis}/>
       <HiTrendingUp onClick={handleClick} className={checkHidIcon} />
       <div className={checkHidNav}>
-        <Link to="/About">
+        <Link to="/project-2/CryptoDetails">
           <p>Crypto Calculator</p>
         </Link>
-        <Link to="/Contact">
+        <Link to="/project-2/SecondInvestmentDetails">
           <p>Inflation Calculator</p>
         </Link>
       </div>
