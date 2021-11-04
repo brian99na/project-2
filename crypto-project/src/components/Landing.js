@@ -20,7 +20,7 @@ function Landing(props) {
       <form onSubmit={handleSubmit}>
         <p>$</p>
         <input
-          className="landingInput"
+          className="landingInput regularFont"
           value={value}
           type="text"
           onChange={handleChange}

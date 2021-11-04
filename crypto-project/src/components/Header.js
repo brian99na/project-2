@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <nav className="navUpper">
       <Link to="/">
-        <h1>What if?</h1>
+        <h1 className='headTitle'>What if?</h1>
       </Link>
       <HiTrendingDown onClick={handleClick} className={classVis}/>
       <HiTrendingUp onClick={handleClick} className={checkHidIcon} />

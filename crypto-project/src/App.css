@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&family=Space+Grotesk:wght@400;500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -15,7 +15,21 @@
   font-weight: 400;
 }
 
+.detailButton {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background: black;
+  color: white;
+}
+
 /* Header */
+
+.headTitle {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+}
 
 a {
   color: black;
@@ -46,7 +60,8 @@ a {
 
 .hidden {
   display: none;
-  width: 0;
+  width: 0vw;
+  right: -400px;
   transition: 1s ease;
 }
 
@@ -57,12 +72,12 @@ a {
   justify-content: center;
   padding: 1em;
   gap: 3em;
-  position: absolute;
+  position: fixed;
   height: 100vh;
-  width: 60vw;
+  width: 80vw;
   bottom: 0;
-  right: 0px;
-  background: rgb(202, 202, 202);
+  right: 0;
+  background: rgb(220, 234, 255);
 }
 
 /* Main */
@@ -97,6 +112,7 @@ a {
   font-size: 36px;
   border-bottom: 1px solid rgb(206, 205, 205);
   outline: none;
+  border-radius: 0;
 }
 
 /*        Prices          */
@@ -107,7 +123,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2em;
+  gap: 2.5em;
 }
 
 .pricesVid {
@@ -142,8 +158,11 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1.5em;
 }
 
 .secInvTitle {
-  
+  text-align: center;
+  font-size: 38px;
 }
+

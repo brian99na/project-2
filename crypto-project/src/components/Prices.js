@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Prices(props) {
     
 
@@ -9,6 +11,9 @@ function Prices(props) {
                 <h1 className='mediumFont priceRes'>${props.results.priceNow}</h1>
                 <h2 className='regularFont'>That's a change of</h2>
                 <h1 className='mediumFont priceRes'>{props.results.percentChange}%</h1>
+                <Link to='/CryptoDetails'>
+                    <button className='detailButton'>Try out a different cryptocurrency here</button>
+                </Link>
             </div>
         </div>
     )
