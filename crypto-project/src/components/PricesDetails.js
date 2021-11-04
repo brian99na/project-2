@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 function PricesDetails(props) {
   const [cryptoValue, setCryptoValue] = useState("");
@@ -6,6 +6,7 @@ function PricesDetails(props) {
   const [dateValue, setDateValue] = useState("");
   const [results, setResults] = useState(false);
   const [dropDown, setDropDown] = useState(false)
+  const focusDropDown = useRef()
 
   const handlePriceChange = (e) => {
     setPriceValue(e.target.value);
@@ -34,6 +35,7 @@ function PricesDetails(props) {
     setCryptoValue('')
     setPriceValue('')
     setResults(true);
+    resultsJSX && focusDropDown.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
   }
 
   const cryptoStartCoin =
@@ -57,11 +59,11 @@ function PricesDetails(props) {
     ));
 
   const resultsJSX = results && (
-    <div>
-      <h1 className="regularFont">Your {props.coin} is now worth</h1>
-      <h1>${props.results.priceNow}</h1>
-      <h1>a change of</h1>
-      <h1>{props.results.percentChange}%</h1>
+    <div className='resultsJSX' ref={focusDropDown}>
+      <h1 className="regularFont">Your <span className='resultsJSXCoin'>{props.coin}</span> is now worth</h1>
+      <h1 className="mediumFont">${props.results.priceNow}</h1>
+      <h1 className="regularFont">a change of</h1>
+      <h1 className="mediumFont">{props.results.percentChange}%</h1>
     </div>
   );
 
@@ -78,11 +80,11 @@ function PricesDetails(props) {
           value={dateValue}
         ></input>
         <h1 className="regularFont">You invested</h1>
-        <span>$</span>
         <input
           type="text"
           onChange={handlePriceChange}
           value={priceValue}
+          placeholder='$'
         ></input>
         <p className="regularFont">into</p>
         <input

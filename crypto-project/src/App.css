@@ -186,7 +186,7 @@ a {
 
 /*        Prices Details         */
 .priceDetailMain {
-  font-size: 30px;
+  font-size: 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,14 +194,52 @@ a {
   padding: 14px;
 }
 
+.priceDetailForm {
+  height: 90vh;
+  width: 90vw;
+}
+
+.priceDetailForm > *{
+  padding: 10px 0;
+}
+
 .priceDetailForm input{
   border: none;
   border-radius: 0;
   border-bottom: 1px solid rgb(185, 185, 185);
-  font-size: 24px;
-  width: 50%;
+  font-size: 36px;
+  width: 100%;
+  outline: none;
 }
 
 .priceDetailForm h1 {
   font-size: 30px;
 }
+
+.priceDetailForm button {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: .8em;
+  border-radius: 5px;
+}
+
+.cryptoDropDown {
+  height: 20vh;
+  width: 100%;
+  z-index: 1;
+}
+
+.resultsJSX {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.resultsJSXCoin {
+  text-decoration: 3px underline black;
+}
+
+/*        Inflation Details         */
