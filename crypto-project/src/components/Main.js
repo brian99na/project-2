@@ -4,7 +4,7 @@ import Homepage from "./Homepage";
 import SecondInvestmentDetails from "./SecondInvestmentDetails";
 import PricesDetails from "./PricesDetails";
 
-function Main() {
+function Main(props) {
   const [month, setMonth] = useState("March");
   const [year, setYear] = useState("2017");
   const [inputPrice, setInputPrice] = useState("1000");
@@ -41,7 +41,7 @@ function Main() {
       .then((data) => setInflationData(data.dataset.data));
   };
 
-  const resultCalculations = () => {
+  const cryptoCalculator= () => {
     const currentPrice = (
       (inputPrice * currentCoinPrice) /
       pastCoinPrice
@@ -61,10 +61,13 @@ function Main() {
   useEffect(() => {
     currentApiCall();
     oldApiCall();
-    inflationApiCall();
-    resultCalculations();
+    cryptoCalculator();
     inflationCalculator();
   }, [inputPrice]);
+
+  useEffect(() => {
+    inflationApiCall();
+  }, [])
 
   useEffect(() => {
     const months = [
@@ -88,8 +91,11 @@ function Main() {
     setYear(yearNum);
   }, [date]);
 
+  const navbarGray = props.navbarClickable ? null : 'navbarGray'
+  const mainClass = `mainVisible ${navbarGray}`
+
   return (
-    <div>
+    <div className={mainClass}>
       <Route
         path="/project-2"
         exact
@@ -116,7 +122,7 @@ function Main() {
       <Route
         path="/project-2/Inflation-Calculator"
         exact
-        render={() => <SecondInvestmentDetails />}
+        render={() => <SecondInvestmentDetails setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage}/>}
       />
     </div>
   );
