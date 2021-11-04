@@ -19,6 +19,7 @@ function Main(props) {
   const [inflationData, setInflationData] = useState('')
   const [inflationPercentage, setInflationPercentage] = useState('')
   const [apiError, setApiError] = useState('')
+  const [cryptoList, setCryptoList] = useState('')
 
   const currentApiCall = () => {
     fetch(
@@ -39,7 +40,9 @@ function Main(props) {
   };
 
   const cryptoApiCall = () => {
-    
+    fetch('https://api.coingecko.com/api/v3/coins/list')
+    .then(res => res.json())
+    .then(data => setCryptoList(data))
   }
 
   const inflationApiCall = () => {
@@ -74,7 +77,8 @@ function Main(props) {
   }, [inputPrice]);
 
   useEffect(() => {
-    inflationApiCall();
+    inflationApiCall()
+    cryptoApiCall();
   }, [])
 
   useEffect(() => {
@@ -125,7 +129,7 @@ function Main(props) {
       <Route
         path="/project-2/Crypto-Details"
         exact
-        render={() => <PricesDetails />}
+        render={() => <PricesDetails cryptoList={cryptoList} setCoin={setCoin}/>}
       />
       <Route
         path="/project-2/Inflation-Calculator"

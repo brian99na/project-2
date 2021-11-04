@@ -13,9 +13,9 @@ function SecondInvestmentDetails(props) {
   const inflationFixed = Number(inflationLost).toFixed(2);
 
   const inflationJSX = props.inflationPercentage && (
-    <p className="inflationResults">
-      You have lost ${inflationFixed} which is a reduction of{" "}
-      {props.inflationPercentage}
+    <p className="inflationResults regularFont">
+      You have lost <span className='mediumFont'>${inflationFixed} </span>which is a reduction of 
+      <span className='mediumFont'> {props.inflationPercentage}%</span>
     </p>
   );
 
@@ -36,7 +36,7 @@ function SecondInvestmentDetails(props) {
 
   return (
     <div className="inflationMain">
-      <h1 className="regularFont">Calculate Inflation</h1>
+      <h1 className="regularFont">You held your cash</h1>
         <p className="regularFont">Enter the Date</p>
         <input
           value={dateValue}

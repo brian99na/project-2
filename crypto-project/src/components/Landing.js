@@ -16,7 +16,7 @@ function Landing(props) {
 
   return (
     <div className='landing'>
-      <h1 className='regularFont'>What if you invested</h1>
+      <h1 className='regularFont'>You invested</h1>
       <form onSubmit={handleSubmit}>
         <p>$</p>
         <input
