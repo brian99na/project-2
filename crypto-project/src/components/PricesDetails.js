@@ -60,7 +60,7 @@ function PricesDetails(props) {
   const cryptoJSX =
     dropDown &&
     combList.map((cryptoItem) => (
-      <p className='cryptoElement'onClick={(e) => handleCryptoClick(e, cryptoItem.id, cryptoItem.name)}>{cryptoItem.name}</p>
+      <p className='cryptoElement regularFont'onClick={(e) => handleCryptoClick(e, cryptoItem.id, cryptoItem.name)}>{cryptoItem.name}</p>
     ));
 
   const resultsJSX = results && (
