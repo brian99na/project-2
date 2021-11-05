@@ -12,7 +12,7 @@ function Main(props) {
   const [coin, setCoin] = useState("bitcoin");
   const [currentCoinPrice, setCurrentCoinPrice] = useState("");
   const [pastCoinPrice, setPastCoinPrice] = useState("");
-  const [results, setResults] = useState({priceNow: '1000', percentChange: "0",});
+  const [results, setResults] = useState({priceNow: inputPrice, percentChange: "0",});
   const [inflationData, setInflationData] = useState('')
   const [inflationPercentage, setInflationPercentage] = useState('')
   const [cryptoList, setCryptoList] = useState('')
@@ -142,7 +142,7 @@ function Main(props) {
       <Route
         path="/project-2/Inflation-Calculator"
         exact
-        render={() => <SecondInvestmentDetails  setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage}/>}
+        render={() => <SecondInvestmentDetails  inflationData={inflationData}setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage}/>}
       />
     </div>
   );
