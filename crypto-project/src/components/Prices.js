@@ -5,7 +5,7 @@ function Prices(props) {
 
     return (
         <div className='pricesMain' ref={props.pageRef} >
-            <video className="pricesVid" src="https://github.com/brian99na/project_1/blob/main/Compressed/coinflip_VP9.webm?raw=true" type='video/mp4' autoplay/>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BTC_Logo.svg/183px-BTC_Logo.svg.png" alt='btc'/>
             <div className='prices'>
                 <h1 className='regularFont secInvTitle' >your investment is now worth</h1>
                 <h1 className='mediumFont priceRes'>${props.results.priceNow}</h1>

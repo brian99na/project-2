@@ -6,7 +6,7 @@ function SecondInvestment(props) {
 
     return (
         <div className='secondInvestment' ref={props.secInvRef}>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/BTC_Logo.svg/183px-BTC_Logo.svg.png" alt='btc'/>
+            <img src="https://findicons.com/files/icons/2219/dot_pictograms/256/usd_dollar_money_cash.png" alt='btc'/>
             <div className='inflationHome'>
                 <h1 className='regularFont secInvTitle'>What if you held that in cash?</h1>
                 <h1 className='regularFont pricesTitle'>Due to inflation, your money has lost</h1>
