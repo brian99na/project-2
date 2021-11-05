@@ -36,11 +36,8 @@ function PricesDetails(props) {
     e.preventDefault()
     props.setInputPrice(priceValue);
     props.setDate(dateValue);
-    setDateValue('')
-    setCryptoValue('')
-    setPriceValue('')
     setResults(true);
-    resultsJSX && focusDropDown.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+    results && focusDropDown.current.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
   }
 
   const cryptoStartCoin =

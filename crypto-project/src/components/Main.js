@@ -15,7 +15,6 @@ function Main(props) {
   const [results, setResults] = useState({priceNow: '1000', percentChange: "0",});
   const [inflationData, setInflationData] = useState('')
   const [inflationPercentage, setInflationPercentage] = useState('')
-  const [apiError, setApiError] = useState('')
   const [cryptoList, setCryptoList] = useState('')
 
 
@@ -25,7 +24,6 @@ function Main(props) {
     )
       .then((res) => res.json())
       .then((data) => setCurrentCoinPrice(data[coin].usd))
-      .catch((error) => setApiError('Error:', error));
   };
 
   const oldApiCall = () => {
@@ -34,7 +32,6 @@ function Main(props) {
     )
       .then((res) => res.json())
       .then((data) => setPastCoinPrice(data.market_data.current_price.usd))
-      .catch((error) => setApiError('Error:', error))
   };
 
   const cryptoApiCall = () => {
@@ -47,14 +44,13 @@ function Main(props) {
     fetch("https://data.nasdaq.com/api/v3/datasets/RATEINF/CPI_USA.json?api_key=dDi1qzdRACZxKWbNGJRx")
       .then((res) => res.json())
       .then((data) => setInflationData(data.dataset.data))
-      .catch((error) => setApiError('Error:', error));
   };
 
   const cryptoCalculator= () => {
-    const currentPrice = currentCoinPrice && ((inputPrice * currentCoinPrice)/pastCoinPrice).toFixed(2);
-    const percentChange = currentCoinPrice && ((currentPrice / inputPrice) * 100).toFixed(0);
-    const priceLocale = currentCoinPrice && Number(currentPrice).toLocaleString();
-    const percentLocale = currentCoinPrice && Number(percentChange).toLocaleString();
+    const currentPrice = ((inputPrice * currentCoinPrice)/pastCoinPrice).toFixed(2);
+    const percentChange = ((currentPrice / inputPrice) * 100).toFixed(0);
+    const priceLocale = Number(currentPrice).toLocaleString();
+    const percentLocale = Number(percentChange).toLocaleString();
     setResults({ priceNow: priceLocale, percentChange: percentLocale });
   };
 
@@ -69,13 +65,6 @@ function Main(props) {
     oldApiCall();
     cryptoCalculator();
     inflationCalculator();
-  }, []);
-
-  useEffect(() => {
-    currentApiCall();
-    oldApiCall();
-    cryptoCalculator();
-    inflationCalculator();
   }, [inputPrice]);
 
   useEffect(() => {
@@ -84,6 +73,12 @@ function Main(props) {
     cryptoCalculator();
     inflationCalculator();
   }, [date]);
+
+  useEffect(() => {
+    currentApiCall();
+    oldApiCall();
+    cryptoCalculator();
+  }, [coin]);
 
   useEffect(() => {
     inflationApiCall()
@@ -111,9 +106,10 @@ function Main(props) {
     setMonth(months[monthNum]);
     setYear(yearNum);
   }, [date]);
-  
+
+  console.log(coin)
   console.log(results)
-  console.log(date)
+  console.log(pastCoinPrice)
 
   const navbarGray = props.navbarClickable ? null : 'navbarGray'
   const mainClass = `mainVisible ${navbarGray}`
@@ -146,7 +142,7 @@ function Main(props) {
       <Route
         path="/project-2/Inflation-Calculator"
         exact
-        render={() => <SecondInvestmentDetails  setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage} apiError={apiError}/>}
+        render={() => <SecondInvestmentDetails  setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage}/>}
       />
     </div>
   );
