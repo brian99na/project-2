@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HiTrendingDown, HiTrendingUp } from "react-icons/hi";
+import { HiTrendingDown } from "react-icons/hi";
 
 const Header = (props) => {
   const [active, setActive] = useState("false");

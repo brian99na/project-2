@@ -10,20 +10,25 @@ function PricesDetails(props) {
 
   const handlePriceChange = (e) => {
     setPriceValue(e.target.value);
+    setResults(false)
   };
 
   const handleCryptoChange = (e) => {
       setDropDown(true)
     setCryptoValue(e.target.value);
+    setResults(false)
+
   };
 
   const handleDateChange = (e) => {
     setDateValue(e.target.value);
+    setResults(false)
+
   };
 
   const handleCryptoClick = (e, cryptoItemId, cryptoItemName) => {
     props.setCoin(cryptoItemId);
-    setCryptoValue(cryptoItemName)
+    setCryptoValue(cryptoItemName);
     setDropDown(false)
   };
 
@@ -55,7 +60,7 @@ function PricesDetails(props) {
   const cryptoJSX =
     dropDown &&
     combList.map((cryptoItem) => (
-      <p onClick={(e) => handleCryptoClick(e, cryptoItem.id, cryptoItem.name)}>{cryptoItem.name}</p>
+      <p className='cryptoElement'onClick={(e) => handleCryptoClick(e, cryptoItem.id, cryptoItem.name)}>{cryptoItem.name}</p>
     ));
 
   const resultsJSX = results && (
@@ -67,7 +72,10 @@ function PricesDetails(props) {
     </div>
   );
 
-  console.log(results)
+
+
+    const dropDownCSS = dropDown ? 'cryptoDropDownActive' : null
+    const dropDownVal = `cryptoDropDown ${dropDownCSS}`
 
   return (
     <div className='priceDetailMain'>
@@ -93,7 +101,7 @@ function PricesDetails(props) {
           value={cryptoValue}
           placeholder='Enter Coin'
         ></input>
-        <div className="cryptoDropDown">{cryptoJSX}</div>
+        <div className={dropDownVal}>{cryptoJSX}</div>
         <button onClick={handleSubmit}>Calculate</button>
       </form>
       {resultsJSX}

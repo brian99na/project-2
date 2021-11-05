@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Route } from "react-router";
 import Homepage from "./Homepage";
 import SecondInvestmentDetails from "./SecondInvestmentDetails";
@@ -12,11 +12,12 @@ function Main(props) {
   const [coin, setCoin] = useState("bitcoin");
   const [currentCoinPrice, setCurrentCoinPrice] = useState("");
   const [pastCoinPrice, setPastCoinPrice] = useState("");
-  const [results, setResults] = useState({priceNow: inputPrice, percentChange: "0",});
+  const [results, setResults] = useState({priceNow: '1000', percentChange: "0",});
   const [inflationData, setInflationData] = useState('')
   const [inflationPercentage, setInflationPercentage] = useState('')
   const [apiError, setApiError] = useState('')
   const [cryptoList, setCryptoList] = useState('')
+
 
   const currentApiCall = () => {
     fetch(
@@ -68,19 +69,21 @@ function Main(props) {
     oldApiCall();
     cryptoCalculator();
     inflationCalculator();
+  }, []);
+
+  useEffect(() => {
+    currentApiCall();
+    oldApiCall();
+    cryptoCalculator();
+    inflationCalculator();
   }, [inputPrice]);
 
   useEffect(() => {
     currentApiCall();
     oldApiCall();
     cryptoCalculator();
+    inflationCalculator();
   }, [date]);
-
-  useEffect(() => {
-    currentApiCall();
-    oldApiCall();
-    cryptoCalculator();
-  }, [coin]);
 
   useEffect(() => {
     inflationApiCall()
@@ -108,11 +111,12 @@ function Main(props) {
     setMonth(months[monthNum]);
     setYear(yearNum);
   }, [date]);
+  
+  console.log(results)
+  console.log(date)
 
   const navbarGray = props.navbarClickable ? null : 'navbarGray'
   const mainClass = `mainVisible ${navbarGray}`
-
-console.log(results)
 
   return (
     <div className={mainClass}>
@@ -137,12 +141,12 @@ console.log(results)
       <Route
         path="/project-2/Crypto-Details"
         exact
-        render={() => <PricesDetails cryptoList={cryptoList} coin={coin} setCoin={setCoin} results={results} setDate={setDate} setInputPrice={setInputPrice}/>}
+        render={() => <PricesDetails className='priceDetailsClass'cryptoList={cryptoList} coin={coin} setCoin={setCoin} results={results} setInputPrice={setInputPrice} date={date}/>}
       />
       <Route
         path="/project-2/Inflation-Calculator"
         exact
-        render={() => <SecondInvestmentDetails setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage} apiError={apiError}/>}
+        render={() => <SecondInvestmentDetails  setDate={setDate} inputPrice={inputPrice} setInputPrice={setInputPrice} inflationPercentage={inflationPercentage} apiError={apiError}/>}
       />
     </div>
   );

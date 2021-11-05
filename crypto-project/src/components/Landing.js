@@ -16,7 +16,7 @@ function Landing(props) {
 
   return (
     <div className='landing'>
-      <h1 className='regularFont'>You invested</h1>
+      <h1 className='regularFont'>you invested</h1>
       <form onSubmit={handleSubmit}>
         <p>$</p>
         <input
@@ -28,7 +28,7 @@ function Landing(props) {
         ></input>
       </form>
       <h2 className='regularFont'>
-        into Bitcoin in {props.year}?
+        into Bitcoin in {props.year}
       </h2>
     </div>
   );

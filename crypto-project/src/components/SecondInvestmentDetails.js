@@ -1,59 +1,73 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 function SecondInvestmentDetails(props) {
   const [dateValue, setDateValue] = useState("");
   const [priceValue, setPriceValue] = useState("");
+  const [result, setResult] = useState(false);
 
-  console.log(props.inflationPercentage);
+  const inflationRef = useRef();
 
-  const inflationLost =
-    props.inflationPercentage &&
-    (props.inflationPercentage / 100) * props.inputPrice;
+  const handleDateChange = (e) => {
+    setDateValue(e.target.value);
+    setResult(false)
+  };
 
-  const inflationFixed = Number(inflationLost).toFixed(2);
-
-  const inflationJSX = props.inflationPercentage && (
-    <p className="inflationResults regularFont">
-      You have lost <span className='mediumFont'>${inflationFixed} </span>which is a reduction of 
-      <span className='mediumFont'> {props.inflationPercentage}%</span>
-    </p>
-  );
+  const handlePriceChange = (e) => {
+    setPriceValue(e.target.value);
+    setResult(false)
+  };
 
   const handleClick = () => {
     props.setInputPrice(priceValue);
     props.setDate(dateValue);
     setPriceValue("");
     setDateValue("");
-  }
-
-  const handleDateChange = (e) => {
-    setDateValue(e.target.value);
+    setResult(true);
+    inflationJSX && inflationRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center",
+    });
   };
 
-  const handlePriceChange = (e) => {
-    setPriceValue(e.target.value);
-  };
+  const inflationLost = (props.inflationPercentage / 100) * props.inputPrice;
+
+  console.log(inflationLost)
+
+  const inflationFixed = inflationLost.toFixed(2);
+
+  const inflationJSX = result && (
+    <div className="inflationAlt" ref={inflationRef}>
+      <p className="inflationResults regularFont">
+        You have lost <span className="mediumFont">${inflationFixed} </span> of
+        value which is a reduction of
+        <span className="mediumFont"> {props.inflationPercentage}%</span>
+      </p>{" "}
+    </div>
+  );
+
 
   return (
-    <div className="inflationMain">
-      <h1 className="regularFont">You held your cash</h1>
-        <p className="regularFont">Enter the Date</p>
+    <div className="inflationUpper">
+      <div className="inflationMain">
+        <h1 className="regularFont">You held your</h1>
+        <input
+          value={priceValue}
+          onChange={handlePriceChange}
+          type="text"
+          placeholder="$"
+        ></input>
+        <h1 className="regularFont">in cash since</h1>
         <input
           value={dateValue}
           onChange={handleDateChange}
           type="text"
           placeholder="DD-MM-YYYY"
         ></input>
-        <p className="regularFont">Enter the Amount</p>
-        <span>$</span>
-        <input
-          value={priceValue}
-          onChange={handlePriceChange}
-          type="text"
-        ></input>
         <br />
         <button onClick={handleClick}>Enter</button>
-        {inflationJSX}
+      </div>
+      {inflationJSX}
     </div>
   );
 }

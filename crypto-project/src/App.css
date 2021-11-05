@@ -69,7 +69,7 @@ a {
   bottom: 0;
   background: rgba(252, 213, 86, 0.9);
   transition: .5s cubic-bezier(.49,.01,.35,1);
-  right: -400px;
+  right: -100vw;
   z-index: 1;
 }
 
@@ -79,6 +79,8 @@ a {
 
 .navFont{
   font-size: 40px;
+  cursor: pointer;
+  text-align: center;
 }
 
 /* Main */
@@ -97,18 +99,18 @@ a {
 }
 
 .landing {
-  height: 80vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 5em 1em 1em 1em;
   gap: .5em;
-  font-size: 20px;
+  font-size: 1.3em;
 }
 
 .landing form p {
-  font-size: 30px;
+  font-size: 1.5em;
   font-weight: 300;
 }
 
@@ -130,17 +132,18 @@ a {
 /*        Prices          */
 
 .pricesMain {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.5em;
+  gap: 1.2em;
 }
 
 .pricesVid {
   padding: 1em;
-  width: 50%
+  width: 50%;
+  border-right: 1px solid rgb(224, 224, 224);
 }
 
 .prices {
@@ -148,13 +151,16 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   font-size: 20px;
   gap: .5em;
 }
 
 .pricesTitle {
   font-size: 20px;
+}
+
+.pricesTitle2 {
+  
 }
 
 .priceRes {
@@ -181,6 +187,14 @@ a {
 .inflationPercentage {
   font-weight: 400;
   font-size: 38px;
+}
+
+.inflationHome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 
 
@@ -225,9 +239,25 @@ a {
 }
 
 .cryptoDropDown {
-  height: 20vh;
+  height: 0;
   width: 100%;
+  overflow-y:auto;
   z-index: 1;
+  transition: height 1s ease;
+}
+
+.cryptoDropDownActive {
+  height: 20vh;
+}
+
+.cryptoElement {
+  border-bottom: 1px solid rgb(209, 209, 209);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cryptoElement:hover {
+  background-color: rgb(223, 223, 223);
 }
 
 .resultsJSX {
@@ -243,3 +273,181 @@ a {
 }
 
 /*        Inflation Details         */
+.inflationUpper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.inflationMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 34px 16px;
+  gap: .6em;
+  height: 90vh;
+}
+
+.inflationMain input{
+  font-size: 26px;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.inflationMain button {
+  border: none;
+  padding: .8em;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+}
+
+.inflationAlt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  height: 100vh;
+  padding: 1em;
+  text-align: center;
+}
+
+  .homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .arrowHome {
+    position: sticky;
+    top: -20px;
+    font-size: 25px;
+  }
+
+/*        Media Queries        */
+
+@media screen and (min-width: 768px) {
+  .landing {
+    font-size: 30px;
+  }
+  .landing form input {
+    font-size: 40px;
+    width: 60%
+  }
+  .navUpper h1 {
+    font-size: 40px;
+    padding: .5em;
+  }
+  .icon {
+    font-size: 40px;
+  }
+  .pricesMain {
+    flex-direction: row;
+    gap: 1em;
+  }
+  .pricesMain > * {
+    padding: 1em;
+  }
+  .prices {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .prices button {
+    font-size: 15px;
+  }
+  .secInvTitle {
+    font-size: 36px;
+  }
+  .pricesTitle {
+    font-size: 25px;
+  }
+  .secondInvestment {
+    flex-direction: row-reverse;
+  }
+  .inflationHome {
+    align-items: flex-end;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+  .sectionLanding {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .landing {
+    max-width: 1400px;
+    width: 100%
+  }
+  .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navUpper {
+    width: 100%;
+    max-width: 1600px;
+    position: sticky;
+    top: 10px;
+  }
+  .navUpper > *{
+    width: 100%;
+  }
+  .icon {
+    display: none;
+  }
+  .hidden {
+    right: 0;
+    top: 0;
+    position:inherit;
+    background: none;
+    height: 100%;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .navFont {
+    font-size: 25px;
+  }
+  .navbarGray {
+    filter: blur(0px)
+  }
+  .secInvTitle {
+    font-size: 40px;
+  }
+  .pricesTitle {
+    font-size: 30px;
+  }
+  .priceDetailForm {
+    max-width: 1100px;
+  }
+  .inflationUpper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .inflationMain {
+    width: 100%;
+    font-size: 26px;
+  }
+  .inflationMain input {
+    font-size: 26px;
+  }
+  .inflationSection {
+    display: flex;
+    width: 100%;
+  }
+  .homepage {
+    max-width: 1100px;
+    align-items: center;
+  }
+}
