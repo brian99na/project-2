@@ -141,7 +141,7 @@ function Main(props) {
       <Route
         path="/project-2/Crypto-Details"
         exact
-        render={() => <PricesDetails className='priceDetailsClass'cryptoList={cryptoList} coin={coin} setCoin={setCoin} results={results} setInputPrice={setInputPrice} date={date}/>}
+        render={() => <PricesDetails className='priceDetailsClass'cryptoList={cryptoList} coin={coin} setCoin={setCoin} results={results} setDate={setDate}setInputPrice={setInputPrice} date={date}/>}
       />
       <Route
         path="/project-2/Inflation-Calculator"
